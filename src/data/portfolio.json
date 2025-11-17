@@ -1,0 +1,190 @@
+{
+  "seo": {
+    "title": "Warren Dalawampu - Software Engineer Portfolio",
+    "description": "Senior Backend Developer specializing in PHP, Laravel, Node.js, React, and modern web technologies. Expert in building scalable microservices and RESTful APIs.",
+    "keywords": "software engineer, backend developer, php developer, laravel developer, nodejs developer, react developer, full stack developer, microservices, REST API",
+    "siteUrl": "https://warrdev.tech",
+    "image": "https://warrdev.tech/og-image.jpg",
+    "twitterHandle": "@warrdev"
+  },
+  "personal": {
+    "name": "Warren Dalawampu",
+    "title": "Software Engineer",
+    "tagline": "Building scalable solutions with modern technologies",
+    "email": "warrdev08@gmail.com",
+    "location": "Pasig City, Metro Manila, Philippines",
+    "phone": "+639 561 645 935",
+    "initials": "WD",
+    "image": "dp.jpg"
+  },
+  "about": {
+    "heading": "Senior Backend Developer & System Architect",
+    "paragraphs": [
+      "Software Engineer with 5+ years of experience specializing in backend development, microservices architecture, and system integration. Currently working as a Senior Backend Developer at NTT Limited Philippines, where I collaborate with other teams to build scalable solutions.",
+      "Expert in PHP/Laravel, Node.js, and React, with extensive experience in Docker, MongoDB, MySQL, and modern DevOps practices. Strong background in building RESTful APIs, implementing payment gateways, and integrating third-party services."
+    ],
+    "traits": ["Fast Learner", "Goal Oriented", "Problem Solver", "Team Leader", "Hardworker"]
+  },
+  "skills": [
+    {
+      "category": "Backend",
+      "items": ["PHP", "Laravel", "Node.js", "REST API", "Microservices", "Python", "C#"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["React.js", "HTML5", "CSS3", "JavaScript", "jQuery", "Tailwind CSS"]
+    },
+    {
+      "category": "Database",
+      "items": ["MySQL", "MongoDB", "PostgreSQL", "Redis", "RabbitMQ"]
+    },
+    {
+      "category": "DevOps & Tools",
+      "items": ["Docker", "Git", "GitLab", "GitHub", "CI/CD", "Linux", "Nginx", "Apache"]
+    },
+    {
+      "category": "Other Technologies",
+      "items": ["Websockets", "TDD", "Telegram Bot", "Protobuf", "Shell Scripting", "IoT/Microcontrollers"]
+    },
+    {
+      "category": "Project Management",
+      "items": ["Jira", "Confluence", "Agile", "System Architecture", "Team Leadership"]
+    }
+  ],
+  "experience": [
+    {
+      "company": "NTT Limited Philippines Branch",
+      "position": "Senior Backend Developer",
+      "period": "Aug 2024 - Present",
+      "description": "Leading system architecture design and guiding junior developers in building scalable solutions.",
+      "highlights": [
+        "Collaborate with fellow seniors to create system architecture plans",
+        "Implement hybrid login system for online casino with QR code access",
+        "Integrate 3rd party payment gateways (Xendit, Unionbank)",
+        "Use self-hosted GitLab for project management and version control",
+        "Develop in containerized environment using VSCode with dev container setup"
+      ]
+    },
+    {
+      "company": "EClaro Philippines",
+      "position": "Configuration Analyst",
+      "period": "Feb 2024 - Aug 2024",
+      "description": "Worked with international teams on highly configurable systems.",
+      "highlights": [
+        "Use MongoDB pipeline and Excel-like functions for system configuration",
+        "Analyze business requirements and implement as configuration",
+        "Document and test configurations using Jira and Confluence",
+        "Collaborate with different nationalities in global projects"
+      ]
+    },
+    {
+      "company": "1 Bit Software Development Corp",
+      "position": "PHP Developer",
+      "period": "Apr 2023 - Feb 2024",
+      "description": "Built RESTful APIs, microservices, and integrated third-party casino games.",
+      "highlights": [
+        "Implement RESTful APIs and streaming server using Laravel and Node.js",
+        "Use Test Driven Development approach",
+        "Integrate 3rd party casino games and payment gateways",
+        "Build microservices and admin UI using DCAT Admin",
+        "Implement caching and protobuf for performance and security",
+        "Develop Telegram Bot as notification system"
+      ]
+    },
+    {
+      "company": "MVSoftech Inc",
+      "position": "Junior Backend Developer",
+      "period": "Oct 2020 - Apr 2023",
+      "description": "Full-stack development and DevOps responsibilities including server management.",
+      "highlights": [
+        "Develop frontend with React.js consuming RESTful APIs",
+        "Build Node.js applications with MongoDB",
+        "Setup and maintain Linux servers, Docker containers, and VMs",
+        "Implement CI/CD pipelines and deploy using GitHub webhooks",
+        "Deploy and manage services (Nextcloud, GitLab, Portainer, WireGuard VPN)",
+        "Guide interns and collaborate with network engineers"
+      ]
+    },
+    {
+      "company": "Mindoro State University",
+      "position": "Management Information System",
+      "period": "Jul 2019 - Sept 2020",
+      "description": "IT support and development for university systems.",
+      "highlights": [
+        "Develop enrollment system using MVC PHP framework",
+        "Setup computer laboratory and troubleshoot network issues",
+        "Provide technical support to employees and students"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science in Information Technology",
+      "school": "Batangas State University (Alangilan Campus)",
+      "period": "2019 - 2021"
+    },
+    {
+      "degree": "Bachelor of Science in Information and Technology",
+      "school": "Mindoro State University (Calapan City Campus)",
+      "period": "2015 - 2019",
+      "awards": [
+        "2017 - Computer Programmer of the Year",
+        "2016-2017 - Academic Scholarship (70% off Tuition Fee)"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Online Casino Platform",
+      "description": "Hybrid login system with QR code access for venue machines, integrated with payment gateways and third-party game providers.",
+      "tech": ["PHP", "Laravel", "MySQL", "MongoDB", "Xendit", "Unionbank"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "title": "Streaming Server",
+      "description": "Real-time streaming server built with Laravel and Node.js for live content delivery.",
+      "tech": ["Laravel", "Node.js", "Websockets", "Redis"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "title": "Microservices Architecture",
+      "description": "Built multiple microservices with admin UI for controlling behavior and data using DCAT Admin.",
+      "tech": ["PHP", "Laravel", "Docker", "DCAT Admin", "Protobuf"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "title": "HRIS & Time Logging System",
+      "description": "Modified HRIS system with barcode scanner integration for employee time logging and kiosk setup.",
+      "tech": ["Laravel", "MySQL", "Barcode Scanner", "React"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "title": "Telegram Bot System",
+      "description": "Notification system and deployment management using Telegram bots and webapp integration.",
+      "tech": ["Node.js", "Telegram Bot API", "Python"],
+      "github": "#",
+      "demo": "#"
+    },
+    {
+      "title": "DevOps Infrastructure",
+      "description": "Self-hosted GitLab, Portainer, Nextcloud, and various services with CI/CD pipelines and monitoring.",
+      "tech": ["Docker", "GitLab", "Linux", "Nginx", "WireGuard VPN"],
+      "github": "#",
+      "demo": "#"
+    }
+  ],
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/warrdev"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/warrdev"
+    }
+  ]
+}
