@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # React Frontend
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: portfolio-client
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/contact
+    depends_on:
+      - server
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # PHP Backend API
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: portfolio-server
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=portfolio_db
+      - DB_USER=portfolio_user
+      - DB_PASS=portfolio_password
+    volumes:
+      # Mount logs directory to persist data
+      - ./server/logs:/var/www/html/logs
+    depends_on:
+      - db
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+  # MySQL Database (Optional)
+  db:
+    image: mysql:8.0
+    container_name: portfolio-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=portfolio_db
+      - MYSQL_USER=portfolio_user
+      - MYSQL_PASSWORD=portfolio_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
