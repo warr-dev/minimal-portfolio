@@ -2,6 +2,12 @@
 
 This guide will help you set up automatic deployment to Hostinger using GitHub Actions via SSH.
 
+## Project Structure
+
+The frontend React application is located in the `client/` folder. The GitHub Actions workflow automatically:
+- Builds the React app from `client/`
+- Deploys the built files from `client/dist/` to your Hostinger server
+
 ## Prerequisites
 
 1. A Hostinger hosting account with SSH access
@@ -108,10 +114,10 @@ To trigger deployment manually:
 ## What Happens During Deployment
 
 1. **Checkout code**: GitHub Actions pulls your latest code
-2. **Setup Node.js**: Installs Node.js 20
-3. **Install dependencies**: Runs `npm ci` in the client folder
-4. **Build project**: Runs `npm run build` to create production build
-5. **Deploy via SSH**: Securely transfers the `dist` folder contents to your Hostinger server using rsync over SSH
+2. **Setup Node.js**: Installs Node.js 22
+3. **Install dependencies**: Runs `npm ci` in the `client/` folder
+4. **Build project**: Runs `npm run build` in the `client/` folder to create production build
+5. **Deploy via SSH**: Securely transfers the `client/dist/` folder contents to your Hostinger server using rsync over SSH
 
 ## Verify Deployment
 
@@ -132,11 +138,11 @@ To update your portfolio:
 
 ## Important Files
 
-- `.github/workflows/deploy.yml` - GitHub Actions workflow
-- `client/vite.config.js` - Build configuration
-- `client/public/.htaccess` - Server configuration (HTTPS redirect, caching, security headers)
-- `client/public/sitemap.xml` - Update domain to match your actual domain
-- `client/src/data/portfolio.json` - All portfolio content
+- [.github/workflows/deploy.yml](.github/workflows/deploy.yml) - GitHub Actions workflow
+- [client/vite.config.js](client/vite.config.js) - Build configuration
+- [client/public/.htaccess](client/public/.htaccess) - Server configuration (HTTPS redirect, caching, security headers)
+- [client/public/sitemap.xml](client/public/sitemap.xml) - Update domain to match your actual domain
+- [client/src/data/portfolio.json](client/src/data/portfolio.json) - All portfolio content
 
 ## Post-Deployment Checklist
 
@@ -184,11 +190,11 @@ To update your portfolio:
 If you prefer manual deployment via SSH:
 
 ```bash
-# Build the project
+# From project root, build the project
 cd client
 npm run build
 
-# Deploy via rsync over SSH
+# Deploy via rsync over SSH (from client folder)
 rsync -avz -e "ssh -p PORT -i ~/.ssh/hostinger_deploy" \
   ./dist/ USERNAME@HOST:/home/USERNAME/public_html/
 ```

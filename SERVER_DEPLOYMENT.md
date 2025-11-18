@@ -2,6 +2,18 @@
 
 This guide explains how to deploy the PHP backend API to Hostinger.
 
+## Project Structure
+
+```
+portfolio/
+├── client/              # React frontend (deployed to public_html via GitHub Actions)
+├── server/              # PHP backend (deployed separately to ~/server/)
+└── .github/workflows/   # CI/CD for frontend only
+```
+
+The frontend (`client/`) is automatically deployed via GitHub Actions to `public_html`.
+The backend (`server/`) must be deployed manually to a separate folder.
+
 ## Server Structure
 
 The `server/` folder contains a complete PHP REST API with:

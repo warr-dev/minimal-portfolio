@@ -15,9 +15,20 @@ A modern, professional portfolio website built with React, Tailwind CSS, and Fra
   - Contact form (ready for backend integration)
   - Footer with social links
 
+## Project Structure
+
+```
+portfolio/
+├── client/              # React frontend (Vite + Tailwind CSS)
+├── server/              # PHP REST API backend
+├── .github/workflows/   # CI/CD deployment
+└── docker-compose.yml   # Docker orchestration
+```
+
 ## Tech Stack
 
-- **Frontend**: React + Vite
+- **Frontend**: React + Vite (in `client/` folder)
+- **Backend**: PHP REST API (in `server/` folder)
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Icons**: SVG icons
@@ -51,10 +62,11 @@ npm run dev
 ### Build for Production
 
 ```bash
+cd client
 npm run build
 ```
 
-The production-ready files will be in the `dist` folder.
+The production-ready files will be in the `client/dist` folder.
 
 ## Customization
 

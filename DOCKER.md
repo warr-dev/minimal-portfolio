@@ -2,11 +2,22 @@
 
 Complete Docker setup for the Warren Dalawampu Portfolio (Client + Server + Database).
 
+## Project Structure
+
+```
+portfolio/
+├── client/              # React frontend
+│   └── Dockerfile       # Multi-stage build (Node.js → nginx)
+├── server/              # PHP backend
+│   └── Dockerfile       # PHP 8.2 + Apache
+└── docker-compose.yml   # Orchestrates all services
+```
+
 ## Overview
 
 The portfolio is fully containerized with three services:
-- **client**: React/Vite frontend (nginx)
-- **server**: PHP REST API (Apache)
+- **client**: React/Vite frontend (nginx) - from `client/` folder
+- **server**: PHP REST API (Apache) - from `server/` folder
 - **db**: MySQL database (optional)
 
 ## Quick Start
