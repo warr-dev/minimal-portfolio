@@ -21,9 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ./client
 
       - name: Build project
         run: npm run build
+        working-directory: ./client
 
       - name: Setup SSH Key
         run: |
@@ -37,7 +39,7 @@ jobs:
       - name: Deploy to Hostinger via rsync
         run: |
           rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-            dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}
+            client/dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}
 
       - name: Verify deployment
         run: |
