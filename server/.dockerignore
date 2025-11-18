@@ -1,0 +1,29 @@
+# Logs
+logs/
+*.log
+
+# Environment files
+.env
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+
+# Rate limit data (will be recreated)
+logs/ratelimit/
+
+# Contact logs (will be recreated)
+logs/contacts/
