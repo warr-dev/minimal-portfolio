@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="favicon16" width="16" height="16"></canvas>
+    <canvas id="favicon32" width="32" height="32"></canvas>
+    <canvas id="favicon192" width="192" height="192"></canvas>
+    <canvas id="favicon512" width="512" height="512"></canvas>
+
+    <script>
+        function drawFavicon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 32;
+
+            // Background
+            ctx.fillStyle = '#2563EB';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, 6 * scale);
+            ctx.fill();
+
+            // W Letter
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 1.5 * scale;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            ctx.beginPath();
+            ctx.moveTo(6 * scale, 10 * scale);
+            ctx.lineTo(9 * scale, 20 * scale);
+            ctx.lineTo(11.5 * scale, 13.5 * scale);
+            ctx.lineTo(14 * scale, 20 * scale);
+            ctx.lineTo(17 * scale, 10 * scale);
+            ctx.stroke();
+
+            // D Letter
+            ctx.beginPath();
+            ctx.moveTo(19 * scale, 10 * scale);
+            ctx.lineTo(19 * scale, 22 * scale);
+            ctx.moveTo(19 * scale, 10 * scale);
+            ctx.quadraticCurveTo(26 * scale, 10 * scale, 26 * scale, 16 * scale);
+            ctx.quadraticCurveTo(26 * scale, 22 * scale, 19 * scale, 22 * scale);
+            ctx.stroke();
+        }
+
+        // Draw all sizes
+        drawFavicon(document.getElementById('favicon16'), 16);
+        drawFavicon(document.getElementById('favicon32'), 32);
+        drawFavicon(document.getElementById('favicon192'), 192);
+        drawFavicon(document.getElementById('favicon512'), 512);
+
+        // Download function
+        setTimeout(() => {
+            ['16', '32', '192', '512'].forEach(size => {
+                const canvas = document.getElementById('favicon' + size);
+                const link = document.createElement('a');
+                link.download = `favicon-${size}x${size}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

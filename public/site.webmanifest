@@ -1,0 +1,23 @@
+{
+  "name": "Warren Dalawampu - Software Engineer",
+  "short_name": "WarrDev",
+  "description": "Portfolio of Warren Dalawampu - Senior Backend Developer & System Architect",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#2563EB",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}

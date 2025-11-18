@@ -35,12 +35,20 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <motion.a
             href="#home"
-            className="text-2xl font-bold text-gray-900 relative overflow-hidden group"
+            className="flex items-center gap-3 relative overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
+            <motion.img
+              src="/logo.svg"
+              alt="WarrDev Logo"
+              className="h-10 w-10"
+              initial={{ opacity: 0, rotate: -180 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            />
             <motion.span
-              className="inline-block"
+              className="inline-block text-2xl font-bold"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
