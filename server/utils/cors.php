@@ -7,8 +7,15 @@
 function handleCORS() {
     $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
+    // If origin is in allowed list, set it
     if (in_array($origin, ALLOWED_ORIGINS)) {
         header("Access-Control-Allow-Origin: $origin");
+        header("Access-Control-Allow-Credentials: true");
+    }
+    // For development: allow localhost on any port
+    elseif (preg_match('/^http:\/\/localhost(:\d+)?$/', $origin)) {
+        header("Access-Control-Allow-Origin: $origin");
+        header("Access-Control-Allow-Credentials: true");
     }
 
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS");

@@ -8,6 +8,13 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../utils/cors.php';
 require_once __DIR__ . '/../utils/validator.php';
 require_once __DIR__ . '/../utils/ratelimit.php';
+require_once __DIR__ . '/../utils/mailer.php';
+
+// Load Composer autoloader if available (for PHPMailer)
+$autoloadPath = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+}
 
 // Handle CORS
 handleCORS();
@@ -57,34 +64,33 @@ if ($success) {
 }
 
 /**
- * Send contact email
+ * Send contact email via SMTP or mail()
  */
 function sendContactEmail($data) {
     $to = CONTACT_EMAIL;
     $subject = "Portfolio Contact: Message from {$data['name']}";
 
-    $message = "
-    New Contact Form Submission
+    $message = "New Contact Form Submission
 
-    Name: {$data['name']}
-    Email: {$data['email']}
+Name: {$data['name']}
+Email: {$data['email']}
 
-    Message:
-    {$data['message']}
+Message:
+{$data['message']}
 
-    ---
-    Sent from: {$_SERVER['REMOTE_ADDR']}
-    Time: " . date('Y-m-d H:i:s') . "
-    ";
+---
+Sent from: {$_SERVER['REMOTE_ADDR']}
+Time: " . date('Y-m-d H:i:s') . "
+User Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? 'Unknown');
 
-    $headers = [
-        'From: ' . FROM_EMAIL,
-        'Reply-To: ' . $data['email'],
-        'X-Mailer: PHP/' . phpversion(),
-        'Content-Type: text/plain; charset=UTF-8'
-    ];
-
-    return mail($to, $subject, $message, implode("\r\n", $headers));
+    // Use the Mailer utility to send email
+    return Mailer::send(
+        $to,
+        $subject,
+        $message,
+        $data['email'],
+        $data['name']
+    );
 }
 
 /**

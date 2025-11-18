@@ -4,6 +4,29 @@
  * Environment-specific settings for the portfolio backend
  */
 
+// Load environment variables from .env file
+$envFile = __DIR__ . '/../.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Skip comments
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        // Parse key=value
+        if (strpos($line, '=') !== false) {
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value);
+            if (!empty($key) && !getenv($key)) {
+                putenv("$key=$value");
+                $_ENV[$key] = $value;
+                $_SERVER[$key] = $value;
+            }
+        }
+    }
+}
+
 // Error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 0); // Set to 1 for development
@@ -26,7 +49,8 @@ define('DB_PASS', getenv('DB_PASS') ?: '');
 
 // Email Configuration
 define('CONTACT_EMAIL', 'warrdev08@gmail.com');
-define('FROM_EMAIL', 'noreply@warrdev.tech');
+// Use SMTP_USER as FROM_EMAIL to avoid sender address rejection
+define('FROM_EMAIL', getenv('SMTP_USER') ?: 'noreply@warrdev.tech');
 define('SMTP_HOST', getenv('SMTP_HOST') ?: 'smtp.gmail.com');
 define('SMTP_PORT', getenv('SMTP_PORT') ?: 587);
 define('SMTP_USER', getenv('SMTP_USER') ?: '');

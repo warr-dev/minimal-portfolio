@@ -1,0 +1,14 @@
+# Environment variables
+.env
+
+# Composer dependencies
+/vendor/
+composer.lock
+
+# Logs
+/logs/*
+!/logs/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -28,8 +28,9 @@ server/
 ├── logs/                # Auto-generated logs
 │   ├── contacts/        # Contact submissions
 │   └── ratelimit/       # Rate limit tracking
-├── index.php            # API router
-├── .htaccess            # Apache config
+├── index.php            # API router (main entry point)
+├── router.php           # Router for PHP built-in server
+├── .htaccess            # Apache config (for production)
 └── .env.example         # Environment variables template
 ```
 
@@ -91,27 +92,45 @@ Response (Error):
 
 1. **Requirements:**
    - PHP 7.4 or higher
-   - Apache with mod_rewrite enabled
+   - For production: Apache with mod_rewrite enabled
 
 2. **Setup:**
    ```bash
    cd server
-   php -S localhost:8000
+   php -S localhost:8000 router.php
    ```
+
+   **Important:** Always use `router.php` when running the PHP built-in server. This ensures:
+   - Proper routing of API requests
+   - CORS headers are set correctly
+   - OPTIONS preflight requests are handled
 
 3. **Test the API:**
    ```bash
+   # Health check
    curl http://localhost:8000/api/health
+
+   # Contact form
+   curl -X POST http://localhost:8000/api/contact \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Test User","email":"test@example.com","message":"Hello from the API!"}'
    ```
 
 ### Hostinger Deployment
 
 1. **Upload Files:**
-   - Upload `server/` folder to your Hostinger account
+   - Upload entire `server/` folder to your Hostinger account
    - Place it alongside or inside your `public_html` directory
+   - **Important:** Make sure to upload the `vendor/` folder (contains PHPMailer)
 
 2. **Configuration:**
-   - Copy `.env.example` to `.env` and update values
+   - Copy `.env.example` to `.env` and update with your SMTP credentials:
+     ```bash
+     SMTP_HOST=smtp.hostinger.com
+     SMTP_PORT=465
+     SMTP_USER=your_email@yourdomain.com
+     SMTP_PASS=your_email_password
+     ```
    - Ensure `logs/` directory is writable: `chmod 755 logs`
 
 3. **Apache Setup:**
@@ -120,8 +139,53 @@ Response (Error):
 
 4. **Test:**
    ```
-   https://warrdev.tech/server/api/health
+   https://yourdomain.com/server/api/health
    ```
+
+## Email Setup
+
+### SMTP Configuration (Recommended)
+
+The API uses **PHPMailer** with SMTP for reliable email delivery. Configure your `.env` file:
+
+**For Hostinger Email:**
+```bash
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_USER=your_email@yourdomain.com
+SMTP_PASS=your_email_password
+```
+
+**For Gmail (Alternative):**
+```bash
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_gmail_app_password
+```
+
+**Note:** For Gmail, you need to:
+1. Enable 2-Factor Authentication
+2. Generate an App Password at https://myaccount.google.com/apppasswords
+3. Use the App Password in `SMTP_PASS`
+
+### Fallback to mail()
+
+If SMTP is not configured, the API will fallback to PHP's `mail()` function. However, emails sent via `mail()` often end up in spam folders.
+
+### Testing Email
+
+Test email sending locally:
+```bash
+curl -X POST http://localhost:8000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test User","email":"test@example.com","message":"This is a test message to verify email functionality is working correctly."}'
+```
+
+Check the server logs for email status:
+```bash
+tail -f logs/error.log
+```
 
 ## Security Features
 

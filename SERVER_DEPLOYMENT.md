@@ -219,19 +219,27 @@ rm -rf ~/server/logs/ratelimit/*
 
 ## Testing Locally
 
-Before deploying, test locally:
+Before deploying, test locally with the router:
 
 ```bash
 cd server
-php -S localhost:8000
+php -S localhost:8000 router.php
 ```
+
+**Important:** Always use `router.php` to properly route API requests and handle CORS.
 
 Then test:
 ```bash
+# Health check
 curl http://localhost:8000/api/health
+
+# Contact form
+curl -X POST http://localhost:8000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@example.com","message":"Hello"}'
 ```
 
-Update client `.env.local`:
+Update client `.env.local` (if needed):
 ```
 VITE_API_URL=http://localhost:8000/api/contact
 ```

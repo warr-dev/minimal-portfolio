@@ -188,33 +188,42 @@ Edit the `seo` section in [client/src/data/portfolio.json](client/src/data/portf
 
 ## Backend Integration
 
-The contact form is ready to connect to a backend. The server folder contains a basic Express setup:
+The contact form is ready to connect to a backend. The server folder contains a PHP REST API:
+
+### Running the Server Locally
 
 1. Navigate to the server directory:
 ```bash
 cd server
 ```
 
-2. Install dependencies:
+2. Start the PHP development server with the router:
 ```bash
-npm install
+php -S localhost:8000 router.php
 ```
 
-3. Create a `.env` file with your email credentials:
-```
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-PORT=3001
-```
+**Important:** You must use `router.php` to properly handle API routing and CORS headers.
 
-4. Update [server/server.js](server/server.js) to enable email sending (uncomment the email code)
-
-5. Update [client/src/components/Contact.jsx](client/src/components/Contact.jsx) to use the API endpoint
-
-6. Start the server:
+3. Test the API:
 ```bash
-npm start
+# Health check
+curl http://localhost:8000/api/health
+
+# Test contact form
+curl -X POST http://localhost:8000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@example.com","message":"Hello"}'
 ```
+
+4. The client is already configured to use `http://localhost:8000/api/contact` in development
+
+### Email Configuration (Optional)
+
+By default, the server uses PHP's `mail()` function. For better email deliverability:
+
+1. Copy `.env.example` to `.env` in the server folder
+2. Configure SMTP settings (Gmail or Hostinger email)
+3. Update [server/config/config.php](server/config/config.php) if needed
 
 ## Deployment
 

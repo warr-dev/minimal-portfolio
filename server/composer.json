@@ -1,0 +1,17 @@
+{
+    "name": "warrdev/portfolio-api",
+    "description": "Portfolio Backend API with Email Support",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "files": [
+            "config/config.php",
+            "utils/cors.php",
+            "utils/validator.php",
+            "utils/ratelimit.php"
+        ]
+    }
+}
