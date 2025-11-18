@@ -24,21 +24,55 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
-    // Simulate form submission (replace with actual backend later)
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setStatus({
-        type: 'success',
-        message: 'Message received! This is a demo - connect your backend to send real emails.'
+    try {
+      // API endpoint - update based on deployment
+      const API_URL = import.meta.env.VITE_API_URL || 'https://warrdev.tech/server/api/contact';
+
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
       });
-      setFormData({ name: '', email: '', message: '' });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus({
+          type: 'success',
+          message: data.message || 'Message sent successfully! I will get back to you soon.'
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        // Handle validation errors
+        if (data.errors) {
+          const errorMessages = Object.values(data.errors).join('. ');
+          setStatus({
+            type: 'error',
+            message: errorMessages
+          });
+        } else {
+          setStatus({
+            type: 'error',
+            message: data.error || 'Failed to send message. Please try again.'
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setStatus({
+        type: 'error',
+        message: 'Network error. Please check your connection and try again.'
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
